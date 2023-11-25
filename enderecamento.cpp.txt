@@ -1,0 +1,32 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+int main (){
+	int var1 = 10;
+	float var2 = 5.5;
+	double var3 = 7.8;
+	char var4 = 'a';
+	
+	int *pvar1;
+	float *pvar2;
+	double *pvar3;
+	char *pvar4;
+	
+	pvar1 = &var1;
+	pvar2 = &var2;
+	pvar3 = &var3;
+	pvar4 = &var4;
+	
+	cout << "\nEndereco: " << pvar1 << " - valor: " << var1; 
+	cout << "\nEndereco: " << pvar2 << " - valor: " << var2; 
+	cout << "\nEndereco: " << pvar3 << " - valor: " << var3; 
+	cout << "\nEndereco: " << pvar4 << " - valor: " << var4;
+	
+	cout << "\n\n";
+	
+	printf("\nEndereco: %X Conteudo: %d", pvar1, var1);
+	printf("\nEndereco: %X Conteudo: %f", pvar2, var2);
+	printf("\nEndereco: %X Conteudo: %lf", pvar3, var3);
+	printf("\nEndereco: %X Conteudo: %c", pvar4, var4);
+}

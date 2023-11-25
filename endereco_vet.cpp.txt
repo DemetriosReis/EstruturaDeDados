@@ -1,0 +1,14 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+int main (){
+	
+	short int vet[10]={1,2,3,4,5,6,7,8,9,10};
+	short int *pvet;
+	
+	for (int i = 0; i < 10; i++){
+			pvet = &vet[i];
+			printf("\nEndereco: %X Conteudo: %d", pvet, vet[i]);
+	}
+}

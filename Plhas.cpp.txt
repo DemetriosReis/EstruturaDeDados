@@ -1,0 +1,63 @@
+#include <iostream>
+#include <stdio.h>
+#include <string>
+#include <stdlib.h>
+using namespace std;
+
+struct No {
+	int info;
+	struct No *prox;
+};
+
+struct Pilha {
+	struct No *topo;
+};
+
+void empilhar(int valor, struct Pilha *ptr);
+void exibir(struct Pilha *ptr);
+void desempilhar(struct Pilha *ptr);
+
+int main(){
+	
+	struct Pilha *p1 = (struct Pilha*) malloc(sizeof(struct Pilha));
+	p1->topo = NULL;
+	
+	empilhar(10,p1);
+	empilhar(20,p1);
+	empilhar(30,p1);
+	exibir(p1);
+}
+
+void empilhar(int valor, struct Pilha *ptr){
+	struct No *novo = (struct No*) malloc(sizeof(struct No));
+	novo->info = valor;
+	novo->prox = ptr->topo;
+	ptr-> topo = novo;
+}
+
+void exibir(struct Pilha *ptr){
+	struct No *aux = ptr->topo;
+	if(aux != NULL){
+		while(aux != NULL){
+			printf("%x %i -> %x \n", aux, aux->info, aux->prox);
+			aux = aux->prox;
+		}
+	}
+	else {
+		cout << "lista vazia";
+	}
+}
+
+void desempilhar(struct Pilha *ptr){
+	struct No *aux = ptr->topo;
+	
+	if(aux != NULL){
+		ptr->topo = ptr->topo->prox;
+		free(aux);
+	}
+	else{
+		cout << "Lista vazia\n";
+	}
+
+}
+

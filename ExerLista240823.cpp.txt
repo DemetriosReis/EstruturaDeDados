@@ -1,0 +1,120 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+
+struct No{
+	int info;
+	struct No *prox;
+};
+
+void inserirLista(int elem);
+void exibirLista();
+void removerLista(int valor);
+void qtdeElem();
+
+struct No *cabeca=NULL;
+struct No *ult;
+
+main(){
+	int elem;
+	int resp;
+	system("cls");	
+	cout << "\nO que gostaria de fazer? \n[1] Adicionar \n[2] Listar\n[3] Contar existentes\n[4] Remover \n[5] Sair\n";
+	cin >> resp;
+	
+	switch (resp){
+	
+	case 1: cout << "Qual numero gostaria de adicionar?\n";
+			cin >> elem;
+			inserirLista(elem);
+			return main();
+	case 2: exibirLista();
+			system("pause");
+			return main();
+	case 3: qtdeElem();
+			system("pause");
+			return main();
+	case 4: cout << "Qual numero gostaria de remover?\n";
+			cin >> elem;
+			removerLista(elem);
+			return main();
+	case 5: break;
+	default: cout << "Numero invalido";
+			 return main();
+	}
+}
+
+void inserirLista(int elem){
+	struct No *novo = (struct No *) malloc(sizeof(struct No));
+	novo->info = elem;
+	novo->prox = NULL;
+	if(cabeca == NULL){
+		cabeca = novo;
+	}
+	else{
+		ult->prox = novo;
+	}
+	ult = novo;
+}
+
+void exibirLista(){
+	
+	struct No *aux;
+	aux = cabeca;
+	if(cabeca==NULL){
+		printf("Lista Vazia");
+	}
+	else{
+		while(aux != NULL){
+			printf("%x %i->%x\n", aux, aux->info, aux->prox);
+			aux = aux->prox;
+		}
+	}
+	
+}
+	
+void removerLista(int valor){
+	struct No *aux = cabeca;
+	struct No *ant;
+	if (cabeca != NULL){
+		while (aux->info != valor && aux->prox != NULL){
+			ant = aux; // armazena o ponteiro atual
+			aux = aux->prox; //substitui pelo ponteiro apontado
+		}
+		if (cabeca == aux){
+			cabeca = aux->prox;
+			free(aux);
+		}
+		else if (aux->prox != NULL || aux->info==valor){
+			ant->prox = aux->prox; // o apontador anterior, recebe para onde o proximo ponteiro aponta
+			free(aux);
+		}
+			else{
+				printf("Numero nao encontrado\n");
+			}
+	}
+	else{
+		printf("Lista Vazia. \n");
+	}
+}
+
+void qtdeElem(){
+	struct No *aux;
+	aux = cabeca;
+	int cont = 0;
+	
+	if(cabeca==NULL){
+		printf("Nao existem elementos na lista");
+	}
+	else{
+		while(aux != NULL){
+			aux = aux->prox;
+			cont++;
+		}
+		printf("existem %i elementos na lista", cont);
+	}
+	
+	
+}
+

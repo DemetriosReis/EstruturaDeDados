@@ -1,0 +1,110 @@
+#include <stdio.h>
+#include <string>
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+struct No{
+	int info;
+	struct No *prox; //É um ponteiro apontando para o próximo nó!
+};
+
+int existe();
+int cont = 0;
+int conta();
+void exibirLista();
+void inserirLista(int elem);
+struct No *cabeca=NULL;
+struct No *ult;
+
+main(){
+	
+	inserirLista(10);
+	inserirLista(20);
+	inserirLista(30);
+	inserirLista(40);
+	inserirLista(50);
+	exibirLista();
+	conta();
+	existe();
+}
+
+void inserirLista(int elem){ // criação de função que não precisa devolver nada
+
+	struct No *novo = (struct No*)malloc(sizeof(struct No)); // ele precisa de um struct no começo pra falar q tem q pegar o tamanho do struct q ta sendo definido pelo maloc 
+	novo->info = elem; // pega o local do novo e coloca o elem no info 
+	novo->prox = NULL; // sempre colocar o proximo prox como null pq ainda não tem o endereço do proximo
+ 
+		if (cabeca == NULL){
+			cabeca = novo; // cabeça recebe o local do do novo
+		}
+		else{
+			ult->prox = novo; // pra onde o ultimo ta apontando vai receber o novo 
+		}
+		ult = novo; // depois recebe o novo
+}
+
+void exibirLista(){
+	struct No *aux;
+	aux = cabeca;
+	
+	if(cabeca==NULL){
+		printf("Lista Vazia");
+	}
+	else{	
+		while(aux != NULL){
+			printf("%x %i -> %x \n", aux, aux->info, aux->prox); // mostra o local do arquivo a informação e pra onde ta sendo apontado 
+			aux = aux->prox;
+			cont++;
+		}
+	}	
+}
+
+int existe(){
+	
+	string resp;
+	int num;
+	struct No *aux;
+	aux = cabeca;
+	
+	cout << "\nGostaria de fazer uma pesquisa? [S/N]\n";
+	cin >> resp;
+	if (resp == "n" or resp == "N"){
+		return 0;
+	}
+	else if (resp == "s" or resp == "S"){
+	
+		cout << "\nQual numero gostaria de pesquisar?\n";
+		cin >> num;
+	
+			if(cabeca==NULL){
+				printf("\nLista Vazia");
+			}
+			else{	
+				while(aux != NULL){			
+					if(aux->info == num){
+						cout << "existe.";
+						return existe();
+					}
+					else{
+						aux = aux->prox;
+					}
+				}
+		cout << "nao existe.";
+		return existe();
+			}
+    }
+    else{
+    	cout << "Resposta invalida";
+    	return existe();
+	}
+}
+
+
+int conta(){
+	
+	printf("\nExistem %i itens na lista", cont);
+	return 0;
+	
+}
+

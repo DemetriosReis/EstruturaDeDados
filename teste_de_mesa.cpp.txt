@@ -1,0 +1,17 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+int main (){
+	int x1 = 10;
+	int x2 = 20;
+	int x3 = 5;
+	int *px1, *px2, *px3;
+	px1 = &x1;
+	px2 = &x2;
+	px3 = &x3;
+	x1 = *px2 + 5;
+	x2 = *px3 + *px1;
+	*px1 = 10 + *px2;
+	x3 = *(px1+1) + *px2;
+}
